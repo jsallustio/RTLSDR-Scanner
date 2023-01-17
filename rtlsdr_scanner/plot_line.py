@@ -313,9 +313,9 @@ class Plotter(object):
                 self.axes.set_ylim(self.extent.get_l())
                 if self.settings.plotFunc == PlotFunc.VAR and len(self.axes.collections) > 0:
                     norm = self.axes.collections[0].norm
-                    self.barBase=ScalarMappable.set_clim((norm.vmin, norm.vmax))
+                    self.barBase = ScalarMappable.set_clim((norm.vmin, norm.vmax))
                 else:
-                    self.barBase=ScalarMappable.set_clim(self.extent.get_l())
+                    self.barBase = ScalarMappable.set_clim(self.extent.get_l())
                     norm = Normalize(vmin=self.extent.get_l()[0],
                                      vmax=self.extent.get_l()[1])
                 for collection in self.axes.collections:
@@ -371,10 +371,10 @@ class Plotter(object):
     def set_bar(self, on):
         self.barBase.ax.set_visible(on)
         if on:
-            #self.axes.set_subplotspec(gs)
+            # self.axes.set_subplotspec(gs)
             self.axes.get_subplotspec().get_gridspec().set_width_ratios([9.5, 0.5])
-        #else:
-            #self.axes.set_subplotspec(1, 1)
+        # else:
+        # self.axes.set_subplotspec(1, 1)
 
         self.figure.subplots_adjust()
 
@@ -402,12 +402,12 @@ class Plotter(object):
 
         if get_colours().index(colourMap) < 4:
             self.set_bar(False)
-        #else:
-        #    self.set_bar(True)
-        #self.barBase.set_cmap(colourMap)
-        #try:
-        #    self.barBase.draw_all()
-        #except:
+            # else:
+            #    self.set_bar(True)
+            # self.barBase.set_cmap(colourMap)
+            # try:
+            #    self.barBase.draw_all()
+            # except:
             pass
 
     def close(self):
@@ -680,7 +680,7 @@ class ThreadPlot(threading.Thread):
 
     def __get_norm(self, autoL, extent):
         if autoL:
-            vmin, vmax = self.barBase=ScalarMappable.get_clim()
+            vmin, vmax = self.barBase = ScalarMappable.get_clim(ScalarMappable)
         else:
             yExtent = extent.get_l()
             vmin = yExtent[0]

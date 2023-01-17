@@ -251,7 +251,7 @@ class DialogPrefs(wx.Dialog):
                                      "Tune SDR#")
         self.checkTune.SetValue(settings.clickTune)
         self.checkTune.SetToolTip('Double click plot_line to tune SDR#')
-        textPlugin = wx.HyperlinkCtrl(self, wx.ID_ANY,
+        textPlugin = wx.adv.HyperlinkCtrl(self, wx.ID_ANY,
                                       label="(Requires plugin)",
                                       url="http://eartoearoak.com/software/sdrsharp-net-remote")
 
@@ -389,8 +389,7 @@ class DialogAdvPrefs(wx.Dialog):
 
         textOverlap = wx.StaticText(self, label='PSD Overlap (%)')
         self.slideOverlap = wx.Slider(self, wx.ID_ANY,
-                                      settings.overlap * 100,
-                                      0, 75,
+                                      45, 0, 75,
                                       style=wx.SL_LABELS)
         self.slideOverlap.SetToolTip('Power spectral density'
                                            ' overlap')
@@ -427,7 +426,7 @@ class DialogAdvPrefs(wx.Dialog):
         dlg.Destroy()
 
     def __on_ok(self, _event):
-        self.settings.overlap = self.slideOverlap.GetValue() / 100.0
+        self.settings.overlap = self.slideOverlap.GetValue() // 100
         self.settings.winFunc = self.winFunc
 
         self.EndModal(wx.ID_OK)

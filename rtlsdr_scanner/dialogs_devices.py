@@ -123,16 +123,16 @@ class DialogDevicesRTL(wx.Dialog):
             self.gridDev.SetReadOnly(i, self.COL_IND, True)
             self.gridDev.SetCellRenderer(i, self.COL_SEL,
                                          TickCellRenderer())
-            if device.isDevice:
-                cell = grid.GridCellChoiceEditor(map(str, device.gains),
-                                                 allowOthers=False)
-                self.gridDev.SetCellEditor(i, self.COL_GAIN, cell)
-            self.gridDev.SetCellEditor(i, self.COL_CAL,
-                                       grid.GridCellFloatEditor(-1, 3))
-            self.gridDev.SetCellEditor(i, self.COL_LEVOFF,
-                                       grid.GridCellFloatEditor(-1, 3))
-            self.gridDev.SetCellEditor(i, self.COL_LO,
-                                       grid.GridCellFloatEditor(-1, 3))
+            #if device.isDevice:
+             #   cell = grid.GridCellChoiceEditor(map(str, device.gains),
+             #                                    allowOthers=False)
+            #    self.gridDev.SetCellEditor(i, self.COL_GAIN, cell)
+           # self.gridDev.SetCellEditor(i, self.COL_CAL,
+           #                            grid.GridCellFloatEditor(-1, 3))
+           # self.gridDev.SetCellEditor(i, self.COL_LEVOFF,
+           #                            grid.GridCellFloatEditor(-1, 3))
+           # self.gridDev.SetCellEditor(i, self.COL_LO,
+          #                             grid.GridCellFloatEditor(-1, 3))
             if device.isDevice:
                 self.gridDev.SetCellValue(i, self.COL_DEV, device.name)
                 self.gridDev.SetCellValue(i, self.COL_SER, str(device.serial))
@@ -338,7 +338,7 @@ class DialogDevicesGPS(wx.Dialog):
     def __set_dev_grid(self):
         self.gridDev.Unbind(grid.EVT_GRID_EDITOR_CREATED)
         self.Unbind(grid.EVT_GRID_CELL_LEFT_CLICK)
-        self.Unbind(grid.EVT_GRID_CELL_CHANGE)
+        self.Unbind(grid.EVT_GRID_CELL_CHANGED)
         self.gridDev.ClearGrid()
 
         i = 0
@@ -375,11 +375,11 @@ class DialogDevicesGPS(wx.Dialog):
         dc = wx.WindowDC(self.gridDev)
         dc.SetFont(font)
         width, _height = dc.GetTextExtent(max(DeviceGPS.TYPE, key=len))
-        self.gridDev.SetColSize(self.COL_TYPE, width * 1.5)
+        self.gridDev.SetColSize(self.COL_TYPE, width * 2)
 
         self.gridDev.Bind(grid.EVT_GRID_EDITOR_CREATED, self.__on_create)
         self.Bind(grid.EVT_GRID_CELL_LEFT_CLICK, self.__on_click)
-        self.Bind(grid.EVT_GRID_CELL_CHANGE, self.__on_change)
+        self.Bind(grid.EVT_GRID_CELL_CHANGED, self.__on_change)
 
     def __set_button_state(self):
         if len(self.devices) > 0:

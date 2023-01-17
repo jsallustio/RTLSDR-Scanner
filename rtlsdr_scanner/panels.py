@@ -661,7 +661,7 @@ class PanelLine(wx.Panel):
         dc.SetBackground(brush)
 
         dc.Clear()
-        dc.DrawLine(0, height / 2., width, height / 2.)
+        dc.DrawLine( 0, height / 2, width, height / 2)
 
 
 class PanelMeasure(wx.Panel):

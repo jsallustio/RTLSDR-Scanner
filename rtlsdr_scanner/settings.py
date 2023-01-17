@@ -245,7 +245,7 @@ class Settings(object):
         self.autoT = self.cfg.ReadBool('autoT', self.autoT)
         self.showMeasure = self.cfg.ReadBool('showMeasure', self.showMeasure)
         self.alert = self.cfg.ReadBool('alert', self.alert)
-        self.alertLevel = self.cfg.ReadFloat('alertLevel', self.alertLevel)
+        self.alertLevel = self.cfg.ReadInt('alertLevel', self.alertLevel)
         self.gps = self.cfg.ReadBool('gps', self.gps)
         self.gpsRetry = self.cfg.ReadBool('gpsRetry', self.gpsRetry)
         self.exportWidth = self.cfg.ReadFloat('exportWidth', self.exportWidth)

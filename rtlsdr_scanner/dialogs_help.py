@@ -57,12 +57,6 @@ class DialogSysInfo(wx.Dialog):
         self.Centre()
 
     def __populate_versions(self, control):
-        imageType = 'Pillow'
-        try:
-            imageVer = Image.PILLOW_VERSION
-        except AttributeError:
-            imageType = 'PIL'
-            imageVer = Image.VERSION
 
         visvisVer = 'Not installed'
         if not hasattr(sys, 'frozen'):
@@ -79,7 +73,7 @@ class DialogSysInfo(wx.Dialog):
                     '\tPython: {}\n'
                     '\tmatplotlib: {}\n'
                     '\tNumPy: {}\n'
-                    '\t{}: {}\n'
+                    #'\t{}: {}\n'
                     '\tpySerial: {}\n'
                     '\tvisvis: {}\n'
                     '\twxPython: {}\n'
@@ -88,7 +82,7 @@ class DialogSysInfo(wx.Dialog):
                              platform.python_version(),
                              matplotlib.__version__,
                              numpy.version.version,
-                             imageType, imageVer,
+                           #  imageType, imageVer,
                              serial.VERSION,
                              visvisVer,
                              wx.version())
@@ -96,7 +90,7 @@ class DialogSysInfo(wx.Dialog):
         control.SetValue(versions)
 
         dc = wx.WindowDC(control)
-        extent = list(dc.GetMultiLineTextExtent(versions, control.GetFont()))
+        extent = list(dc.GetMultiLineTextExtent(versions))
         extent[0] += wx.SystemSettings.GetMetric(wx.SYS_VSCROLL_X) * 2
         extent[1] += wx.SystemSettings.GetMetric(wx.SYS_HSCROLL_Y) * 2
         control.SetMinSize((extent[0], extent[1]))
