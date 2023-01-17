@@ -352,6 +352,7 @@ class Plotter(object):
                                      self.extent,
                                      self.barBase,
                                      annotate)
+
         self.threadPlot.start()
 
         return self.threadPlot
@@ -490,7 +491,7 @@ class ThreadPlot(threading.Thread):
             if segments is not None:
                 lc = LineCollection(segments)
                 lc.set_array(numpy.array(levels))
-                lc.set_norm(self.__get_norm(self.settings.autoL, self.extent))
+                #lc.set_norm(self.__get_norm(self.settings.autoL, self.extent))
                 lc.set_cmap(self.colourMap)
                 lc.set_linewidth(self.lineWidth)
                 lc.set_gid('plot')
@@ -507,7 +508,7 @@ class ThreadPlot(threading.Thread):
         segments, levels = self.__create_segments(data)
         lc = LineCollection(segments)
         lc.set_array(numpy.array(levels))
-        lc.set_norm(self.__get_norm(self.settings.autoL, self.extent))
+        # lc.set_norm(self.__get_norm(self.settings.autoL, self.extent))
         lc.set_cmap(self.colourMap)
         lc.set_linewidth(self.lineWidth)
         lc.set_gid('plot')
@@ -678,14 +679,14 @@ class ThreadPlot(threading.Thread):
 
         return None, None
 
-    def __get_norm(self, autoL, extent):
-        if autoL:
-            vmin, vmax = self.barBase = ScalarMappable.get_clim(ScalarMappable)
-        else:
-            yExtent = extent.get_l()
-            vmin = yExtent[0]
+    #def __get_norm(self, autoL, extent):
+       # if autoL:
+         #   vmin, vmax = self.barBase = ScalarMappable.get_clim()
+       # else:
+           # yExtent = extent.get_l()
+          #  vmin = yExtent[0]
 
-        return Normalize(vmin=vmin, vmax=vmax)
+      #  return Normalize(vmin=vmin, vmax=vmax)
 
     def __get_plots(self):
         plots = []

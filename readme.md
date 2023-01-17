@@ -29,7 +29,7 @@ Windows executables for x86 and amd64 platforms are available on [GitHub](https:
 
 ## Requirements ##
 
-- [Python 2.7.x](http://www.python.org)
+- [Python 3.10.x](http://www.python.org)
 - [wxPython](http://www.wxpython.org/)
 - [matplotlib](http://matplotlib.org/)
 - [numpy](http://www.numpy.org/)
